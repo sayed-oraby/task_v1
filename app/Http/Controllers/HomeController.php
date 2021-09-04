@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Locations;
 use App\Models\Provider;
 use Illuminate\Http\Request;
 
@@ -12,7 +13,9 @@ class HomeController extends Controller
     {
         
         $provider = Provider::where('user_name',$user_name)->firstOrFail();
-        return view('locations',compact('provider'));
+        $x = 1;
+   
+        return view('locations',compact('provider','x'));
         
     }
 }

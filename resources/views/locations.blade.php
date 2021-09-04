@@ -97,43 +97,38 @@
                 </div>
 
                 <table class="table">
+
                     <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">latitude</th>
-                        <th scope="col">longitude</th>
-                    </tr>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">latitude</th>
+                            <th scope="col">longitude</th>
+                        </tr>
                     </thead>
                     <tbody>
 
-                    @php
-                        $x = 1;
-                        $locations = App\Models\Locations::where('provider_id',$provider->id)->get();       
-                    @endphp
 
-                    @if($locations != null && $locations->count() > 0)
+                        @if($provider->locations != null && $provider->locations()->count() > 0)
 
-                    @foreach ($locations as $item)
-                        <tr>
-                            <th scope="row">{{$x}}</th>
-                            <td>{{$item->latitude}}</td>
-                            <td>{{$item->longitude}}</td>
-                        </tr>
+                            @foreach ($provider->locations as $item)
+                                <tr>
+                                    <th scope="row">{{$x}}</th>
+                                    <td>{{$item->latitude}}</td>
+                                    <td>{{$item->longitude}}</td>
+                                </tr>
 
-                        @php
-                            $x = $x + 1;
-                        @endphp
+                                @php $x = $x + 1; @endphp
 
-                    @endforeach
+                            @endforeach
 
-                    @else 
-                    <tr>
-                        <td colspan="4">
-                            there no any locations in this provider yet
-                        </td>
-                    </tr>
-                    @endif
-                    
+                        @else 
+                            <tr>
+                                <td colspan="4">
+                                    there no any locations in this provider yet
+                                </td>
+                            </tr>
+                        @endif
+                        
                     </tbody>
                 </table>
            </div>
