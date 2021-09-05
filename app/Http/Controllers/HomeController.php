@@ -9,13 +9,11 @@ use Illuminate\Http\Request;
 class HomeController extends Controller
 {
     
-    public function locations($user_name)
+    public function locations(Provider $user_name)
     {
-        
-        $provider = Provider::where('user_name',$user_name)->firstOrFail();
-        $x = 1;
-   
-        return view('locations',compact('provider','x'));
+        $provider = $user_name;
+        $provider->load('locations');
+        return view('locations',compact('provider'));
         
     }
 }
