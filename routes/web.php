@@ -37,4 +37,4 @@ Route::group(['middleware' => ['AuthProvider:provider'] , 'namespace' => 'Provid
 
 
 
-Route::get('{user_name}','HomeController@locations');
+Route::get('{user_name:user_name}','HomeController@locations');
